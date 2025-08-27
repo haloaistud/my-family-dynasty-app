@@ -151,7 +151,7 @@ export default function FamilyTree() {
       <CardHeader>
         <CardTitle className="font-headline">Family Oak</CardTitle>
       </CardHeader>
-      <CardContent className="min-h-[400px] overflow-auto p-8 flex justify-center bg-gray-200 dark:bg-gray-800 dark:bg-gradient-to-t dark:from-gray-900 dark:to-gray-800">
+      <CardContent className="min-h-[400px] overflow-auto p-8 flex justify-center bg-gradient-to-br from-yellow-200 to-blue-300 dark:from-yellow-900 dark:to-blue-900">
         {renderTreeRecursively(treeData, handleAddMemberClick)}
       </CardContent>
 
