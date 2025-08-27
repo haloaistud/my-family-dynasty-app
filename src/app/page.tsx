@@ -58,16 +58,32 @@ export default function App() {
             <main className="flex-1 p-4 md:p-8">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-7xl mx-auto">
                 <div className="lg:col-span-2 flex flex-col gap-8">
-                  <PublicRecordsSearch />
-                  <FamilyTree />
-                  <Timeline />
+                  <div className="animate-fadeInUp delay-100">
+                    <PublicRecordsSearch />
+                  </div>
+                  <div className="animate-fadeInUp delay-200">
+                    <FamilyTree />
+                  </div>
+                   <div className="animate-fadeInUp delay-300">
+                    <Timeline />
+                  </div>
                 </div>
                 <div className="lg:col-span-1 flex flex-col gap-8">
-                  <WeatherWidget />
-                  <AiFormatter />
-                  <MediaGallery />
-                  <FamilyStories />
-                  <ActionsPanel />
+                  <div className="animate-fadeInUp delay-400">
+                    <WeatherWidget />
+                  </div>
+                  <div className="animate-fadeInUp delay-500">
+                    <AiFormatter />
+                  </div>
+                  <div className="animate-fadeInUp delay-600">
+                    <MediaGallery />
+                  </div>
+                  <div className="animate-fadeInUp delay-700">
+                    <FamilyStories />
+                  </div>
+                  <div className="animate-fadeInUp delay-700">
+                    <ActionsPanel />
+                  </div>
                 </div>
               </div>
             </main>
