@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['"Literata"', 'serif'],
-        headline: ['"Literata"', 'serif'],
+        body: ['"Outfit"', 'sans-serif'],
+        headline: ['"Outfit"', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
