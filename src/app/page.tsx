@@ -5,6 +5,8 @@ import AiFormatter from "@/components/ai-formatter";
 import MediaGallery from "@/components/media-gallery";
 import ActionsPanel from "@/components/actions-panel";
 import WeatherWidget from "@/components/weather-widget";
+import FamilyStories from "@/components/family-stories";
+import OnboardingWizard from "@/components/onboarding-wizard";
 
 export default function Home() {
   return (
@@ -20,10 +22,12 @@ export default function Home() {
           <div className="lg:col-span-1 flex flex-col gap-8">
             <AiFormatter />
             <MediaGallery />
+            <FamilyStories />
             <ActionsPanel />
           </div>
         </div>
       </main>
+      <OnboardingWizard />
     </div>
   );
 }

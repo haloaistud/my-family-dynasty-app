@@ -1,10 +1,19 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, Download, Users, Lock } from "lucide-react";
+import { Upload, Download, Users, Lock, ShieldCheck, FileScan } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import StoryAnalysisTool from './story-analysis-tool';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 
 export default function ActionsPanel() {
   return (
@@ -27,6 +36,24 @@ export default function ActionsPanel() {
             </Button>
           </div>
         </div>
+        <Separator />
+         <div className="space-y-4">
+           <h3 className="font-semibold flex items-center gap-2"><ShieldCheck className="h-4 w-4" />Admin Tools</h3>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="secondary" className="w-full">
+                  <FileScan className="mr-2 h-4 w-4" />
+                  Story Analysis
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>AI Story Analysis</DialogTitle>
+                </DialogHeader>
+                <StoryAnalysisTool />
+              </DialogContent>
+            </Dialog>
+         </div>
         <Separator />
         <div className="space-y-4">
           <h3 className="font-semibold flex items-center gap-2"><Lock className="h-4 w-4" />Privacy Controls</h3>
