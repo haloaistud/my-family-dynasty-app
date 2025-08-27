@@ -4,7 +4,7 @@ import Timeline from '@/components/timeline';
 import AiFormatter from '@/components/ai-formatter';
 import MediaGallery from '@/components/media-gallery';
 import ActionsPanel from '@/components/actions-panel';
-import WeatherWidget from '@/components/weather-widget';
+import PublicRecordsSearch from '@/components/public-records-search';
 import FamilyStories from '@/components/family-stories';
 import OnboardingWizard from '@/components/onboarding-wizard';
 import {SidebarProvider, Sidebar, SidebarTrigger, SidebarInset, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton} from '@/components/ui/sidebar';
@@ -57,7 +57,7 @@ export default function App() {
             <main className="flex-1 p-4 md:p-8">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-7xl mx-auto">
                 <div className="lg:col-span-2 flex flex-col gap-8">
-                  <WeatherWidget />
+                  <PublicRecordsSearch />
                   <FamilyTree />
                   <Timeline />
                 </div>
