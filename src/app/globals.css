@@ -2,55 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Outfit', sans-serif;
-  background: linear-gradient(135deg, #3a3897 0%, #2c2a72 40%, #1a1a4e 100%);
-}
-
 @layer base {
   :root {
-    --background: 0 0% 96%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 184 42% 30%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 0 0% 93%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 0 0% 93%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 4.8% 9.5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 182 42% 55%;
+    --primary-foreground: 182 42% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
     --accent: 43 91% 48%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 184 42% 30%;
+    --accent-foreground: 43 91% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 182 42% 55%;
     --radius: 0.5rem;
   }
  
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 182 17% 56%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 4.8% 9.5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 182 42% 55%;
+    --primary-foreground: 182 42% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
     --accent: 43 91% 48%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 43 91% 10%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 182 17% 56%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 182 42% 55%;
   }
 }
 
@@ -60,6 +55,8 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, #3a3897 0%, #2c2a72 40%, #1a1a4e 100%);
   }
 }
 
