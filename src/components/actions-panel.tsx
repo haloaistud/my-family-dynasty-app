@@ -1,12 +1,13 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, Download, Users, Lock, ShieldCheck, FileScan, ShieldQuestion } from "lucide-react";
+import { Upload, Download, Users, Lock, ShieldCheck, FileScan, ShieldQuestion, MessageSquare } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import StoryAnalysisTool from './story-analysis-tool';
 import GovernanceTool from "./governance-tool";
+import Chat from "./chat";
 import {
   Dialog,
   DialogContent,
@@ -41,6 +42,17 @@ export default function ActionsPanel() {
          <div className="space-y-4">
            <h3 className="font-semibold flex items-center gap-2"><ShieldCheck className="h-4 w-4" />Admin Tools</h3>
             <div className="space-y-2">
+               <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="secondary" className="w-full">
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    Family Chat
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl h-[80vh] flex flex-col p-0">
+                  <Chat />
+                </DialogContent>
+              </Dialog>
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="secondary" className="w-full">
