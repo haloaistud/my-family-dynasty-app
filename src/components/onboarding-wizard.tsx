@@ -10,7 +10,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Check, TreeDeciduous, Images, BookOpen, Settings } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, TreeDeciduous, Images, BookOpen, Settings, ShieldQuestion } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
 
 const onboardingSteps = [
@@ -31,27 +31,30 @@ const onboardingSteps = [
   },
   {
     icon: <BookOpen className="h-10 w-10 text-primary" />,
-    title: "Family Stories",
-    description: "Document the tales and memories that bring your family's history to life. You can read and contribute to your family's collection of stories.",
+    title: "Family Stories & Affirmations",
+    description: "Document the tales that bring your history to life and view daily affirmations to foster a positive family environment.",
   },
   {
-    icon: <Settings className="h-10 w-10 text-primary" />,
-    title: "Tools & Settings",
-    description: "Manage your data, control privacy settings, and use powerful admin tools to maintain your family archive. You're all set to begin!",
+    icon: <ShieldQuestion className="h-10 w-10 text-primary" />,
+    title: "Admin & Governance",
+    description: "Use powerful admin tools like Story Analysis and the Family Governance bot to maintain your family archive. You're all set to begin!",
   },
 ];
 
-const ONBOARDING_COMPLETED_KEY = 'heritagehub_onboarding_completed';
+const ONBOARDING_COMPLETED_KEY = 'heritagehub_onboarding_completed_v2';
 
 export default function OnboardingWizard() {
   const [step, setStep] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const hasCompletedOnboarding = localStorage.getItem(ONBOARDING_COMPLETED_KEY);
-    if (hasCompletedOnboarding !== 'true') {
-      setIsOpen(true);
-    }
+    // A delay to prevent hydration errors with local storage
+    setTimeout(() => {
+        const hasCompletedOnboarding = localStorage.getItem(ONBOARDING_COMPLETED_KEY);
+        if (hasCompletedOnboarding !== 'true') {
+        setIsOpen(true);
+        }
+    }, 500);
   }, []);
 
   const handleNext = () => {
@@ -72,6 +75,8 @@ export default function OnboardingWizard() {
     localStorage.setItem(ONBOARDING_COMPLETED_KEY, 'true');
     setIsOpen(false);
   };
+
+  if (!isOpen) return null;
 
   const currentStep = onboardingSteps[step];
   const progress = ((step + 1) / onboardingSteps.length) * 100;

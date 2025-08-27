@@ -15,40 +15,54 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 
 // Expanded dataset
 const familyData = {
   id: "you",
   name: "You",
+  group: "Immediate",
   avatarUrl: "https://picsum.photos/id/237/200/200",
   dataAiHint: "person face",
   children: [
     {
       id: "peter-jones",
       name: "Peter Jones",
+      group: "Immediate",
       children: [
         {
           id: "richard-roe",
           name: "Richard Roe",
+          group: "Extended",
           children: [
-            { id: "john-doe", name: "John Doe", children: [] }
+            { id: "john-doe", name: "John Doe", group: "Extended", children: [] }
           ],
         },
-        { id: "jane-smith", name: "Jane Smith", children: [] },
+        { id: "jane-smith", name: "Jane Smith", group: "In-laws", children: [] },
       ],
     },
   ],
 };
 
+const groupColors = {
+    'Immediate': 'border-primary',
+    'Extended': 'border-green-500',
+    'In-laws': 'border-yellow-500',
+    'Bonus Family': 'border-blue-500',
+    'Distant': 'border-gray-500',
+}
+
 const PersonNode = ({ person, onAddMember }) => (
   <div className="relative group flex flex-col items-center text-center">
-    <Avatar className="h-16 w-16 md:h-20 md:w-20 border-2 border-primary/50 shadow-lg hover:border-accent transition-all duration-300">
+    <Avatar className={`h-16 w-16 md:h-20 md:w-20 border-4 ${groupColors[person.group] || 'border-border'} shadow-lg hover:border-accent transition-all duration-300`}>
       {person.avatarUrl && <AvatarImage src={person.avatarUrl} alt={person.name} data-ai-hint={person.dataAiHint} />}
       <AvatarFallback>
         <User className="h-8 w-8 text-muted-foreground" />
       </AvatarFallback>
     </Avatar>
     <span className="mt-2 text-sm font-semibold">{person.name}</span>
+     <span className="text-xs text-muted-foreground">{person.group}</span>
     <Button
       variant="outline"
       size="icon"
@@ -60,42 +74,11 @@ const PersonNode = ({ person, onAddMember }) => (
   </div>
 );
 
-const OakBranch = ({ from, to }) => {
-  const isYou = to.id === 'you';
-  const strokeColor = isYou ? 'hsl(var(--accent))' : 'hsl(var(--border))';
-  const strokeWidth = isYou ? 3 : 2;
-
-  // Simplified curve for demonstration
-  const d = `M ${from.x},${from.y} C ${from.x},${from.y + 50} ${to.x},${to.y - 50} ${to.x},${to.y}`;
-
-  return (
-    <path d={d} stroke={strokeColor} strokeWidth={strokeWidth} fill="none" />
-  );
-};
-
-
-const renderTree = (person, onAddMember, level = 0, parentPosition = null) => {
-  const position = { x: 0, y: level * 120 };
-
-  const childrenElements = person.children.map((child, index) => {
-    const childLevel = level + 1;
-    const childPosition = { x: (index - (person.children.length - 1) / 2) * (200 / (childLevel * 0.5 + 1)), y: childLevel * 150 };
-    return renderTree(child, onAddMember, childLevel, position);
-  });
-
-  return (
-    <div key={person.id} className="flex flex-col items-center relative">
-        <PersonNode person={person} onAddMember={onAddMember} />
-        <div className="flex gap-8 mt-12">
-            {childrenElements}
-        </div>
-    </div>
-  );
-};
-
 export default function FamilyTree() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedParent, setSelectedParent] = useState<string | null>(null);
+  const [newMemberName, setNewMemberName] = useState('');
+  const [newMemberGroup, setNewMemberGroup] = useState('Immediate');
   const [treeData, setTreeData] = useState(familyData);
 
   const handleAddMemberClick = (parentId: string) => {
@@ -103,7 +86,7 @@ export default function FamilyTree() {
     setIsModalOpen(true);
   };
 
-  const handleAddMember = (newMemberName: string) => {
+  const handleAddMember = () => {
     if (!selectedParent || !newMemberName) return;
 
     const addMemberToTree = (node, parentId, newMember) => {
@@ -125,6 +108,7 @@ export default function FamilyTree() {
     const newMember = {
         id: newMemberName.toLowerCase().replace(/\s/g, '-'),
         name: newMemberName,
+        group: newMemberGroup,
         children: [],
         avatarUrl: `https://picsum.photos/seed/${Math.random()}/200/200`,
         dataAiHint: "person face"
@@ -133,6 +117,8 @@ export default function FamilyTree() {
     setTreeData(addMemberToTree(treeData, selectedParent, newMember));
     setIsModalOpen(false);
     setSelectedParent(null);
+    setNewMemberName('');
+    setNewMemberGroup('Immediate');
   };
 
   const renderTreeRecursively = (person, onAddMember) => {
@@ -165,7 +151,7 @@ export default function FamilyTree() {
       <CardHeader>
         <CardTitle className="font-headline">Family Oak</CardTitle>
       </CardHeader>
-      <CardContent className="min-h-[400px] overflow-auto p-8 flex justify-center bg-slate-200 dark:bg-slate-800 dark:bg-gradient-to-t dark:from-slate-900 dark:to-slate-800">
+      <CardContent className="min-h-[400px] overflow-auto p-8 flex justify-center bg-gray-200 dark:bg-gray-800 dark:bg-gradient-to-t dark:from-gray-900 dark:to-gray-800">
         {renderTreeRecursively(treeData, handleAddMemberClick)}
       </CardContent>
 
@@ -174,19 +160,32 @@ export default function FamilyTree() {
           <DialogHeader>
             <DialogTitle>Add New Family Member</DialogTitle>
             <DialogDescription>
-              Enter the name of the new family member to add to the tree.
+              Enter the details of the new family member to add to the tree.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={(e) => {
               e.preventDefault();
-              const form = e.target as HTMLFormElement;
-              const input = form.elements.namedItem('memberName') as HTMLInputElement;
-              handleAddMember(input.value);
+              handleAddMember();
             }}>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="memberName" className="text-right">Name</Label>
-                <Input id="memberName" name="memberName" className="col-span-3" required />
+                <Input id="memberName" name="memberName" className="col-span-3" value={newMemberName} onChange={(e) => setNewMemberName(e.target.value)} required />
+              </div>
+               <div className="grid grid-cols-4 items-center gap-4">
+                <Label htmlFor="memberGroup" className="text-right">Group</Label>
+                 <Select value={newMemberGroup} onValueChange={setNewMemberGroup}>
+                    <SelectTrigger className="col-span-3">
+                        <SelectValue placeholder="Select group" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="Immediate">Immediate Family</SelectItem>
+                        <SelectItem value="Extended">Extended Family</SelectItem>
+                        <SelectItem value="In-laws">In-laws</SelectItem>
+                        <SelectItem value="Bonus Family">Bonus Family</SelectItem>
+                        <SelectItem value="Distant">Distant Relatives</SelectItem>
+                    </SelectContent>
+                </Select>
               </div>
             </div>
             <DialogFooter>
