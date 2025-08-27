@@ -262,7 +262,7 @@ export default function WeatherWidget() {
     }, []);
 
     return (
-        <div className="relative rounded-lg border bg-card text-card-foreground shadow-sm p-6 weather-widget overflow-hidden">
+        <div className="relative rounded-lg border bg-card text-card-foreground shadow-sm p-6 weather-widget overflow-hidden h-64">
             <div
                 ref={containerRef}
                 id="cloud-container"

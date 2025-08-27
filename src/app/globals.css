@@ -4,65 +4,61 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 4.8% 9.5%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 182 42% 55%;
-    --primary-foreground: 182 42% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 43 91% 48%;
-    --accent-foreground: 43 91% 10%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 182 42% 55%;
-    --radius: 0.5rem;
-
-    --sidebar-background: 240 4.8% 9.5%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-ring: 182 42% 55%;
+    --background: 34 88% 95%;
+    --foreground: 22 22% 22%;
+    --card: 40 100% 98%;
+    --card-foreground: 22 22% 22%;
+    --popover: 40 100% 98%;
+    --popover-foreground: 22 22% 22%;
+    --primary: 258 75% 55%;
+    --primary-foreground: 40 100% 98%;
+    --secondary: 220 15% 90%;
+    --secondary-foreground: 22 22% 22%;
+    --muted: 220 15% 90%;
+    --muted-foreground: 22 22% 42%;
+    --accent: 43 91% 58%;
+    --accent-foreground: 22 22% 12%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 100% 98%;
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 258 75% 55%;
+    --radius: 0.8rem;
+    --sidebar-background: 248 60% 30%;
+    --sidebar-foreground: 40 100% 98%;
+    --sidebar-border: 248 60% 40%;
+    --sidebar-accent: 248 70% 45%;
+    --sidebar-accent-foreground: 40 100% 98%;
+    --sidebar-ring: 43 91% 58%;
   }
- 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 4.8% 9.5%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 182 42% 55%;
-    --primary-foreground: 182 42% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 43 91% 48%;
-    --accent-foreground: 43 91% 10%;
-    --destructive: 0 62.8% 30.6%;
+    --background: 244 30% 12%;
+    --foreground: 220 20% 92%;
+    --card: 248 25% 18%;
+    --card-foreground: 220 20% 92%;
+    --popover: 244 30% 12%;
+    --popover-foreground: 220 20% 92%;
+    --primary: 258 85% 70%;
+    --primary-foreground: 258 85% 10%;
+    --secondary: 240 15% 25%;
+    --secondary-foreground: 220 20% 92%;
+    --muted: 240 15% 25%;
+    --muted-foreground: 220 20% 65%;
+    --accent: 43 91% 68%;
+    --accent-foreground: 43 91% 8%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 182 42% 55%;
-
-    --sidebar-background: 240 4.8% 9.5%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-ring: 182 42% 55%;
+    --border: 240 15% 25%;
+    --input: 240 15% 25%;
+    --ring: 258 85% 70%;
+    --sidebar-background: 248 35% 15%;
+    --sidebar-foreground: 220 20% 92%;
+    --sidebar-border: 248 35% 25%;
+    --sidebar-accent: 258 85% 70%;
+    --sidebar-accent-foreground: 258 85% 10%;
+    --sidebar-ring: 43 91% 68%;
   }
 }
-
 @layer base {
   * {
     @apply border-border;
@@ -70,6 +66,107 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Outfit', sans-serif;
-    background-color: hsl(var(--background));
+  }
+  .body-wrapper {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, #3a3897 0%, #2c2a72 40%, #1a1a4e 100%);
   }
 }
+
+.weather-widget::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 70%);
+    animation: shimmer 15s infinite linear;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes shimmer {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.weather-icon-main {
+    filter: drop-shadow(0 0 12px rgba(220, 220, 255, 0.5));
+    animation: floating 3.5s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+#cloud-container {
+    pointer-events: auto;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fadeInUp {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+.animate-fadeInScaleUp {
+    opacity: 0;
+    animation: fadeInScaleUp 0.7s ease-out forwards;
+}
+
+@keyframes gentleBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+.animate-gentleBob {
+    animation: gentleBob 2.5s ease-in-out infinite;
+}
+
+.sun-info .sunrise:hover .sun-icon,
+.sun-info .sunset:hover .sun-icon {
+    transform: rotate(15deg) scale(1.15);
+}
+.sun-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.forecast-day:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.1), 0 4px 10px rgba(0,0,0,0.2);
+}
+.forecast-day:hover .forecast-icon {
+    transform: scale(1.2) translateY(-2px);
+    transition: transform 0.3s ease-out;
+}
+.forecast-day .forecast-icon {
+     transition: transform 0.3s ease-out;
+}
+
+.delay-100 { animation-delay: 0.1s !important; }
+.delay-200 { animation-delay: 0.2s !important; }
+.delay-300 { animation-delay: 0.3s !important; }
+.delay-400 { animation-delay: 0.4s !important; }
+.delay-500 { animation-delay: 0.5s !important; }
+.delay-600 { animation-delay: 0.6s !important; }
+.delay-700 { animation-delay: 0.7s !important; }

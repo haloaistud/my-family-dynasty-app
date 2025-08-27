@@ -9,7 +9,8 @@ import FamilyStories from '@/components/family-stories';
 import OnboardingWizard from '@/components/onboarding-wizard';
 import {SidebarProvider, Sidebar, SidebarTrigger, SidebarInset, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton} from '@/components/ui/sidebar';
 import { Home, Users, Clock, Image, Settings } from 'lucide-react';
-import FamilyAffirmations from '@/components/family-affirmations';
+import WeatherWidget from '@/components/weather-widget';
+
 
 export default function App() {
   return (
@@ -62,7 +63,7 @@ export default function App() {
                   <Timeline />
                 </div>
                 <div className="lg:col-span-1 flex flex-col gap-8">
-                  <FamilyAffirmations />
+                  <WeatherWidget />
                   <AiFormatter />
                   <MediaGallery />
                   <FamilyStories />
